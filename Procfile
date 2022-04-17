@@ -1,1 +1,0 @@
-web: gunicorn StudentPerformanceManagement.wsgi--worker-class=gevent

@@ -14,8 +14,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from django.core.mail import send_mail
-
-
+from students.serializers import LanguagesSerializer,SocialMediaSerializer
+from students.models import Languages,SocialMedia
 class otpViewAPIView(APIView):
     def get(self,request,pk,sotp,format = None):
         user = get_object_or_404(CustomUser.objects.all(),username = pk)
@@ -101,3 +101,38 @@ class userpasswordupdate(APIView):
             return Response(serializer_class.data,status=status.HTTP_200_OK)
         return Response(serializer_class.errors,status=status.HTTP_400_BAD_REQUEST)
         
+
+class LanguagesAPIView(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    lookup_url_kwarg = 'pk'
+    serializer_class = LanguagesSerializer
+    queryset = Languages.objects.all()
+    
+    
+    
+
+class LanguagesList(generics.ListCreateAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = Languages.objects.all()
+    serializer_class = LanguagesSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['^PRN_NO']
+
+
+class SocialMediaAPIView(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    lookup_url_kwarg = 'pk'
+    serializer_class = SocialMediaSerializer
+    queryset = SocialMedia.objects.all()
+
+class SocialMediaList(generics.ListCreateAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = SocialMedia.objects.all()
+    serializer_class = SocialMediaSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['^PRN_NO']
+

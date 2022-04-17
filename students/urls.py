@@ -8,5 +8,9 @@ urlpatterns = [
     path('activation/<int:pk>/<int:sotp>',views.otpViewAPIView.as_view()),
     path('UserUpdateDelete/<int:pk>',views.userAPIView.as_view()),
     path('CreateGetUser/',views.usersList.as_view()),
-    path('Password/',views.userpasswordupdate.as_view())
+    path('Password/',views.userpasswordupdate.as_view()),
+    path('LanguagesUpdate/<int:pk>',views.LanguagesAPIView.as_view()),
+    path('AddRetriveLanguages/',views.LanguagesList.as_view()),
+    path('SocialMeidaUpdate/<int:pk>',views.SocialMediaAPIView.as_view()),
+    path('AddRetriveSocialMedia/',views.SocialMediaList.as_view()),
 ]

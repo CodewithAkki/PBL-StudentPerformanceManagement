@@ -1,8 +1,10 @@
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+from django.core.validators import MaxValueValidator,MinValueValidator
 from django.db.models.signals import  post_save
 from django.dispatch import receiver
 from django.db.models.deletion import CASCADE
@@ -10,7 +12,7 @@ from rest_framework.authtoken.models import Token
 from .managers import CustomUserManager
 from departmentalInfo.models import Department
 from unwantedInfo.models import CountryCode
-
+import uuid
 class CustomUser(AbstractUser):
     username = None
     PRN_NO =  models.AutoField(primary_key = True)
@@ -30,7 +32,8 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
-
+    def __str__(self):
+        return self.email
 @receiver(post_save,sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender,instance = None,created=False,**kwargs):
     if created:
@@ -42,3 +45,18 @@ class otpModel(models.Model):
     createdAt = models.TimeField(auto_now_add=True)
     user = models.OneToOneField(CustomUser,on_delete=CASCADE)
 # Create your models here.
+
+class SocialMedia(models.Model):
+    SocialMediaId = models.UUIDField(primary_key=True, default = uuid.uuid4,editable = False,unique=True)
+    SocialMediaName=models.CharField(max_length=100)
+    PRN_NO=models.ForeignKey("CustomUser", on_delete=models.CASCADE)
+    SocialMediaLink=models.URLField(max_length=200)
+    def __str__(self):
+        return self.PRN_NO , self.SocialMediaName   
+class Languages(models.Model):
+    LanguageId=models.AutoField(primary_key=True)
+    LanguageName=models.CharField(max_length=100)
+    PRN_NO=models.ForeignKey("CustomUser", on_delete=models.CASCADE)
+    Level=models.IntegerField(validators=[MaxValueValidator(100),MinValueValidator(1)])
+    def __str__(self):
+        return self.PRN_NO , self.LanguageName , self.Level

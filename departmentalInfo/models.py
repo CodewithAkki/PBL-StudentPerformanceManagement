@@ -6,7 +6,7 @@ class Department(models.Model):
     def __str__(self):
         return self.departmentName
 
-class courses(models.Model):
+class Courses(models.Model):
     courseNo=models.AutoField(primary_key=True)
     courseName=models.CharField(max_length=100)
     departmentId=models.ForeignKey('Department',on_delete=models.CASCADE)

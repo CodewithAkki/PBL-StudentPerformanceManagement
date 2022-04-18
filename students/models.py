@@ -13,6 +13,7 @@ from .managers import CustomUserManager
 from departmentalInfo.models import Department
 from unwantedInfo.models import CountryCode
 import uuid
+
 class CustomUser(AbstractUser):
     username = None
     PRN_NO =  models.AutoField(primary_key = True)
@@ -40,10 +41,6 @@ def create_auth_token(sender,instance = None,created=False,**kwargs):
         token = Token.objects.create(user=instance)
         print('Token:- ', token.key)
 
-class otpModel(models.Model):
-    otp = models.IntegerField(unique=True)
-    createdAt = models.TimeField(auto_now_add=True)
-    user = models.OneToOneField(CustomUser,on_delete=CASCADE)
 # Create your models here.
 
 class SocialMedia(models.Model):
@@ -52,7 +49,8 @@ class SocialMedia(models.Model):
     PRN_NO=models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     SocialMediaLink=models.URLField(max_length=200)
     def __str__(self):
-        return self.PRN_NO , self.SocialMediaName   
+        return self.PRN_NO , self.SocialMediaName
+
 class Languages(models.Model):
     LanguageId=models.AutoField(primary_key=True)
     LanguageName=models.CharField(max_length=100)

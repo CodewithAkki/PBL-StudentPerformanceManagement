@@ -49,14 +49,14 @@ class otpModel(models.Model):
 class SocialMedia(models.Model):
     SocialMediaId = models.UUIDField(primary_key=True, default = uuid.uuid4,editable = False,unique=True)
     SocialMediaName=models.CharField(max_length=100)
-    PRN_NO=models.ForeignKey("CustomUser", on_delete=models.CASCADE)
+    PRN_NO=models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     SocialMediaLink=models.URLField(max_length=200)
     def __str__(self):
         return self.PRN_NO , self.SocialMediaName   
 class Languages(models.Model):
     LanguageId=models.AutoField(primary_key=True)
     LanguageName=models.CharField(max_length=100)
-    PRN_NO=models.ForeignKey("CustomUser", on_delete=models.CASCADE)
+    PRN_NO=models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     Level=models.IntegerField(validators=[MaxValueValidator(100),MinValueValidator(1)])
     def __str__(self):
         return self.PRN_NO , self.LanguageName , self.Level

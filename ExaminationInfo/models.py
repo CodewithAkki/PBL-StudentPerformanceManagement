@@ -1,6 +1,6 @@
 # Create your models here.
 from django.db import models
-from departmentalInfo.models import courses
+from departmentalInfo.models import Courses
 from students.models import CustomUser
 
 class Examination(models.Model):
@@ -11,7 +11,7 @@ class Examination(models.Model):
         return self.ExamName
 
 class Exam(models.Model):
-    courseNo=models.ForeignKey(courses,on_delete=models.CASCADE)
+    courseNo=models.ForeignKey(Courses,on_delete=models.CASCADE)
     examtype=models.ForeignKey(Examination,on_delete=models.CASCADE)
     marks=models.FloatField()
     PRN_NO=models.ForeignKey(CustomUser,on_delete=models.CASCADE)

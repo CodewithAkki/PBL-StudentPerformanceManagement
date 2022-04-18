@@ -1,6 +1,6 @@
 from django.db import models
 from students.models import CustomUser
-from departmentalInfo.models import courses 
+from departmentalInfo.models import Courses 
 # Create your models here.
 
 class Certifications(models.Model):	
@@ -50,7 +50,7 @@ class PersonalProject(models.Model):
     ProjectId	=models.AutoField(primary_key=True)
     ProjectName=models.CharField(max_length=100)
     Description=models.CharField(max_length=500)
-    CourseNo=models.ForeignKey(courses,on_delete=models.CASCADE)
+    CourseNo=models.ForeignKey(Courses,on_delete=models.CASCADE)
     StartDate=models.DateField()
     PRN_NO=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     EndDate=models.DateField()

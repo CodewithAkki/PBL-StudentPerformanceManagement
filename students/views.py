@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import filters
 from rest_framework.response import Response
 from django.db import IntegrityError
-from unwantedInfo.models import otpModel
+from students.models import otpModel
 import datetime
 from random import randint
 from rest_framework import status

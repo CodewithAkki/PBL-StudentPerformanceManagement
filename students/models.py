@@ -58,3 +58,8 @@ class Languages(models.Model):
     Level=models.IntegerField(validators=[MaxValueValidator(100),MinValueValidator(1)])
     def __str__(self):
         return self.PRN_NO , self.LanguageName , self.Level
+
+class otpModel(models.Model):
+    otp = models.IntegerField(unique=True)
+    createdAt = models.TimeField(auto_now_add=True)
+    user = models.OneToOneField(CustomUser,on_delete=models.CASCADE)

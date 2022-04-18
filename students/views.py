@@ -18,7 +18,7 @@ from students.serializers import LanguagesSerializer,SocialMediaSerializer
 from students.models import Languages,SocialMedia
 class otpViewAPIView(APIView):
     def get(self,request,pk,sotp,format = None):
-        user = get_object_or_404(CustomUser.objects.all(),username = pk)
+        user = get_object_or_404(CustomUser.objects.all(),PRN_NO = pk)
         token = Token.objects.get(user=user)
         cotp = get_object_or_404(otpModel.objects.all(),user=user)
         if cotp.otp == int(sotp):

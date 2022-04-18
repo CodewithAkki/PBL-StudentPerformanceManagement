@@ -46,5 +46,5 @@ urlpatterns = [
    
     path('contrycode/',include('unwantedInfo.urls')),
     path('users/',include('students.urls')),
-    path('token/',views.CustomAuthToken.as_view()),
+    path('Login/',views.CustomAuthToken.as_view()),
 ]

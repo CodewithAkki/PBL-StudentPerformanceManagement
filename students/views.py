@@ -37,9 +37,6 @@ class userAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = studentSerializer
     queryset = CustomUser.objects.all()
     
-    
-    
-
 class usersList(generics.ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]

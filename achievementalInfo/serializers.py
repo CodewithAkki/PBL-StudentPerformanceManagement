@@ -26,7 +26,7 @@ class PersonalProjectSerializer(serializers.ModelSerializer):
         fields = '__all__'
         model = models.PersonalProject
 
-class MailstoneSerializer(serializers.ModelSerializer):
+class MilestonesSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = models.Milestones

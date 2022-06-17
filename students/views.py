@@ -69,7 +69,7 @@ class usersList(generics.ListCreateAPIView):
                 except Exception as e:
                     print(str(e))
                 if current_user.email:
-                    send_mail('	Your OTP for Your gols ',str(Otp),'dom.pblteam@gmail.com',[current_user.email],fail_silently=False)
+                    #send_mail('	Your OTP for Your gols ',str(Otp),'dom.pblteam@gmail.com',[current_user.email],fail_silently=False)
             return Response(user.data,status = status.HTTP_201_CREATED)
         return Response(user.errors, status = status.HTTP_400_BAD_REQUEST)
 

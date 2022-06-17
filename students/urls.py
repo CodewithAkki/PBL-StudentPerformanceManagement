@@ -13,4 +13,5 @@ urlpatterns = [
     path('AddRetriveLanguages/',views.LanguagesList.as_view()),
     path('SocialMeidaUpdate/<int:pk>',views.SocialMediaAPIView.as_view()),
     path('AddRetriveSocialMedia/',views.SocialMediaList.as_view()),
+    path('sendEmail/<str:email>/<str:body>',views.sendEmail.as_view()),
 ]

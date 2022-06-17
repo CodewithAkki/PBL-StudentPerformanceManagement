@@ -72,7 +72,16 @@ class usersList(generics.ListCreateAPIView):
                     send_mail('	Your OTP for Your gols ',str(Otp),'dom.pblteam@gmail.com',[current_user.email],fail_silently=False)
             return Response(user.data,status = status.HTTP_201_CREATED)
         return Response(user.errors, status = status.HTTP_400_BAD_REQUEST)
-        
+
+
+class sendEmail(APIView):
+    def post(self,request,email,body):
+        try:
+            send_mail('	To give Progress report ',body,'dom.pblteam@gmail.com',[email],fail_silently=False)
+            return Response("Email as been send",status = status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response("failed to send email", status = status.HTTP_400_BAD_REQUEST)
+            
             
 class userpasswordupdate(APIView):
     authentication_classes = [TokenAuthentication]
